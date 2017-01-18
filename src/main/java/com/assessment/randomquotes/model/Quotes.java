@@ -104,7 +104,5 @@ public class Quotes {
 		this.author = author;
 		this.tags = tags;
 	}
-	
-	
 
 }
