@@ -105,4 +105,8 @@ public class Quotes {
 		this.tags = tags;
 	}
 
+	public Quotes() {
+
+	}
+
 }
