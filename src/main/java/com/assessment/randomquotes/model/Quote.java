@@ -9,7 +9,7 @@ import java.util.List;
  * @author matias.terracciano
  *
  */
-public class Quotes {
+public class Quote {
 
 	private Long id;
 
@@ -84,7 +84,7 @@ public class Quotes {
 	 * @param author
 	 * @param tags
 	 */
-	public Quotes(String text, String author, List<String> tags) {
+	public Quote(String text, String author, List<String> tags) {
 		super();
 		this.text = text;
 		this.author = author;
@@ -97,7 +97,7 @@ public class Quotes {
 	 * @param author
 	 * @param tags
 	 */
-	public Quotes(Long id, String text, String author, List<String> tags) {
+	public Quote(Long id, String text, String author, List<String> tags) {
 		super();
 		this.id = id;
 		this.text = text;
@@ -105,7 +105,7 @@ public class Quotes {
 		this.tags = tags;
 	}
 
-	public Quotes() {
+	public Quote() {
 
 	}
 

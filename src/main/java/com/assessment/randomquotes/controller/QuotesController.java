@@ -8,11 +8,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.assessment.randomquotes.model.Quotes;
+import com.assessment.randomquotes.model.Quote;
 
 /**
  * @author matias.terracciano
@@ -23,29 +25,46 @@ public class QuotesController {
 
 	@RequestMapping(value = "/quotes", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Quotes> getAllQuotes() {
+	public List<Quote> getAllQuotes() {
 		// TODO change this for a service
 		return generateQuotes();
 	}
 	
 	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public Quotes getQuote(@PathVariable("id") Long id){		
-		return new Quotes();
+	public Quote getQuote(@PathVariable("id") Long id){		
+		return new Quote();
 	}
 	
 	@RequestMapping(value = "/quotes", method = RequestMethod.POST)
 	@ResponseBody
+	@ResponseStatus()
 	public void createQuote(){		
 		//TODO
 	}
+	
+	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.PUT)
+	@ResponseBody
+	public Quote updateQuote(@PathVariable("id") Long id, @RequestBody Quote quote){
+		System.out.println(quote.getText());
+		// TODO save modification an return an element
+		return new Quote();
+	}
+	
+	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteQuote(@PathVariable("id") Long id){		
+		// TODO save modification an return an element
+		//call service an return status code
+	}
+	
 
-	private List<Quotes> generateQuotes() {
-		List<Quotes> quotes = new ArrayList<Quotes>();
+	private List<Quote> generateQuotes() {
+		List<Quote> quotes = new ArrayList<Quote>();
 		List<String> tags = new ArrayList<String>();
 		tags.add("figuras populares");
 		tags.add("ciencia");
-		Quotes quote = new Quotes(
+		Quote quote = new Quote(
 				"Todos somos muy ignorantes, lo que ocurre es que no todos ignoramos las mismas cosas",
 				"Albert Einstein", tags);
 		quotes.add(quote);
