@@ -6,6 +6,7 @@ package com.assessment.randomquotes.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,24 +37,23 @@ public class QuotesController {
 		return new Quote();
 	}
 	
-	@RequestMapping(value = "/quotes", method = RequestMethod.POST)
-	@ResponseBody
-	@ResponseStatus()
-	public void createQuote(){		
+	@RequestMapping(value = "/quotes", method = RequestMethod.POST)	
+	@ResponseStatus(value=HttpStatus.CREATED)
+	public @ResponseBody void createQuote(){		
 		//TODO
 	}
 	
 	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.PUT)
-	@ResponseBody
-	public Quote updateQuote(@PathVariable("id") Long id, @RequestBody Quote quote){
+	@ResponseStatus(value=HttpStatus.NO_CONTENT)
+	public @ResponseBody Quote updateQuote(@PathVariable("id") Long id, @RequestBody Quote quote){
 		System.out.println(quote.getText());
 		// TODO save modification an return an element
 		return new Quote();
 	}
 	
 	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public void deleteQuote(@PathVariable("id") Long id){		
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)	
+	public @ResponseBody void deleteQuote(@PathVariable("id") Long id){		
 		// TODO save modification an return an element
 		//call service an return status code
 	}
