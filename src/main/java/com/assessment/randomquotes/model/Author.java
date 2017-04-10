@@ -3,16 +3,27 @@
  */
 package com.assessment.randomquotes.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author matias.terracciano
  *
  */
+@Entity
+@Table(name = "author")
 public class Author {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
-
+	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
 	/**
@@ -68,6 +79,15 @@ public class Author {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}
+
+	public Author() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 }
