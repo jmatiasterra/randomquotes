@@ -64,9 +64,7 @@ public class QuotesController {
 		List<String> tags = new ArrayList<String>();
 		tags.add("figuras populares");
 		tags.add("ciencia");
-		Quote quote = new Quote(
-				"Todos somos muy ignorantes, lo que ocurre es que no todos ignoramos las mismas cosas",
-				"Albert Einstein", tags);
+		Quote quote = new Quote();
 		quotes.add(quote);
 		return quotes;
 

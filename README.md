@@ -2,7 +2,6 @@
 
 WIP
 
-
 mysql
 
 create database randomquotes;
@@ -13,3 +12,27 @@ CREATE TABLE author(
     last_name VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE quote(
+    id BIGINT NOT NULL auto_increment, 
+    text VARCHAR(250) NOT NULL,
+    author_id BIGINT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE    
+);
+
+CREATE TABLE tag(
+    id BIGINT NOT NULL auto_increment, 
+    text VARCHAR(250) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE quote_tag(
+	text VARCHAR(250) NOT NULL,
+	quote_id BIGINT NOT NULL,
+	tag_id BIGINT NOT NULL,
+    FOREIGN KEY (quote_id) REFERENCES quote(id) ON DELETE CASCADE ON UPDATE CASCADE, 
+    FOREIGN KEY (tag_id) REFERENCES tag(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (quote_id, tag_id)
+);
+

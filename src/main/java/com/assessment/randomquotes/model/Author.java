@@ -3,11 +3,16 @@
  */
 package com.assessment.randomquotes.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +30,8 @@ public class Author {
 	private String firstName;
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+	private Set<Quote> quotes = new HashSet<Quote>(0);
 
 	/**
 	 * @return the id
@@ -85,9 +92,12 @@ public class Author {
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", quotes=" + quotes + "]";
 	}
 
 }
