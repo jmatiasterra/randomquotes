@@ -31,14 +31,14 @@ public class Quote {
 	private Long id;
 	@Column(name = "TEXT", nullable = false)
 	private String text;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "author_id", nullable = false)
 	private Author author;
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	/*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "quote_tags", joinColumns = {
 			@JoinColumn(name = "QUOTE_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "TAG_ID", table = "tag", nullable = false, updatable = false) })
-	private Set<Tag> tags = new HashSet<Tag>(0);
+	private Set<Tag> tags = new HashSet<Tag>(0);*/
 
 	/**
 	 * @return the id
@@ -73,7 +73,7 @@ public class Quote {
 	/**
 	 * @return the tags
 	 */
-	public Set<Tag> getTags() {
+	/*public Set<Tag> getTags() {
 		return tags;
 	}
 
@@ -81,9 +81,9 @@ public class Quote {
 	 * @param tags
 	 *            the tags to set
 	 */
-	public void setTags(Set<Tag> tags) {
+	/*public void setTags(Set<Tag> tags) {
 		this.tags = tags;
-	}
+	}*/
 
 	/**
 	 * @return the author
@@ -126,13 +126,14 @@ public class Quote {
 	 * @param author
 	 * @param tags
 	 */
-	public Quote(Long id, String text, Author author, Set<Tag> tags) {
+	/*public Quote(Long id, String text, Author author, Set<Tag> tags) {
 		super();
 		this.id = id;
 		this.text = text;
 		this.author = author;
 		this.tags = tags;
 	}
+	*/
 
 	/*
 	 * (non-Javadoc)

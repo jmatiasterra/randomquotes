@@ -18,7 +18,8 @@ CREATE TABLE quote(
     text VARCHAR(250) NOT NULL,
     author_id BIGINT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE    
+    KEY author_id (author_id),
+    CONSTRAINT quote_fk_1 FOREIGN KEY (author_id) REFERENCES author(id)
 );
 
 CREATE TABLE tag(

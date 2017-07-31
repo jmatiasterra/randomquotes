@@ -28,10 +28,10 @@ public class Author {
 	private Long id;
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
-	@Column(name = "LAST_NAME", nullable = false)
+	@Column(name = "LAST_NAME")
 	private String lastName;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
-	private Set<Quote> quotes = new HashSet<Quote>(0);
+	@OneToMany(mappedBy = "author", fetch=FetchType.EAGER)
+	private Set<Quote> quotes = new HashSet<Quote>();
 
 	/**
 	 * @return the id
@@ -88,8 +88,36 @@ public class Author {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * @return the quotes
+	 */
+	public Set<Quote> getQuotes() {
+		return quotes;
+	}
+
+	/**
+	 * @param quotes the quotes to set
+	 */
+	public void setQuotes(Set<Quote> quotes) {
+		this.quotes = quotes;
+	}
+
 	public Author() {
 		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param id
+	 * @param firstName
+	 * @param lastName
+	 * @param quotes
+	 */
+	public Author(Long id, String firstName, String lastName, Set<Quote> quotes) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.quotes = quotes;
 	}
 
 	/* (non-Javadoc)

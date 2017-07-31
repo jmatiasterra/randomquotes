@@ -27,8 +27,8 @@ public class Tag {
 	private Long id;
 	@Column(name = "TEXT", nullable = false)
 	private String text;
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
-	private Set<Quote> quotes = new HashSet<Quote>(0);
+	/*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
+	private Set<Quote> quotes = new HashSet<Quote>(0);*/
 
 	/**
 	 * @return the id
@@ -63,28 +63,28 @@ public class Tag {
 	/**
 	 * @return the quotes
 	 */
-	public Set<Quote> getQuotes() {
+	/*public Set<Quote> getQuotes() {
 		return quotes;
-	}
+	}*/
 
 	/**
 	 * @param quotes
 	 *            the quotes to set
 	 */
-	public void setQuotes(Set<Quote> quotes) {
+	/*public void setQuotes(Set<Quote> quotes) {
 		this.quotes = quotes;
-	}
+	}*/
 
 	/**
 	 * @param id
 	 * @param text
 	 * @param quotes
 	 */
-	public Tag(Long id, String text, Set<Quote> quotes) {
+	public Tag(Long id, String text/*, Set<Quote> quotes*/) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.quotes = quotes;
+		//this.quotes = quotes;
 	}
 
 	/**
