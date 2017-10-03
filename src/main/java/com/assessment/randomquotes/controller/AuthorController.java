@@ -5,6 +5,8 @@ package com.assessment.randomquotes.controller;
 
 import java.util.List;
 
+import javax.xml.ws.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -45,5 +47,23 @@ public class AuthorController {
 	public @ResponseBody void createAuthor(@RequestBody Author author){		
 		service.saveAuthor(author);
 	}
+	
+	@RequestMapping(value = "/authors/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(value=HttpStatus.NO_CONTENT)
+	public @ResponseBody void deleteAuthor(@PathVariable("id") Long id){
+		service.deleteAuthorById(id);
+	}
+	
+	@RequestMapping(value = "/authors/{id}", method = RequestMethod.PUT)
+	@ResponseStatus(value=HttpStatus.OK)
+	public @ResponseBody void updateAuthor(@PathVariable("id") Long id, @RequestBody Author author){
+		Author saveAuthor = service.findById(id);
+		if (saveAuthor != null){
+			service.updateAuthor(author);
+		} else{ // im not sure porque en realidad no existe le chabon
+			service.saveAuthor(author);
+		}
+	}
+	
 
 }
