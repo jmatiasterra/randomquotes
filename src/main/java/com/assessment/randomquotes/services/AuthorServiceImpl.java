@@ -40,9 +40,9 @@ public class AuthorServiceImpl implements AuthorService {
 	 * assessment.randomquotes.model.Author)
 	 */
 	@Override
-	public void saveAuthor(Author author) {
+	public Long createAuthor(Author author) {
 		dao.saveAuthor(author);
-
+		return author.getId();
 	}
 
 	/*
