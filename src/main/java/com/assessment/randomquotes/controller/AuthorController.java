@@ -50,22 +50,22 @@ public class AuthorController {
 		return service.createAuthor(author);
 	}
 	
-	@RequestMapping(value = "/authors/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(value=HttpStatus.OK)
-	public @ResponseBody void deleteAuthor(@PathVariable("id") Long id){
+	@ResponseBody
+	public void deleteAuthor(@PathVariable("id") Long id){
 		service.deleteAuthorById(id);
 	}
+	
 	//this could be no content
-	@RequestMapping(value = "/authors/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(value=HttpStatus.OK)
 	@ResponseBody
 	public void updateAuthor(@PathVariable("id") Long id, @RequestBody Author author){
 		Author saveAuthor = service.findById(id);
 		if (saveAuthor != null){
 			service.updateAuthor(author);
-		} else{ // im not sure porque en realidad no existe le chabon
-			service.createAuthor(author);
 		}
 	}
-
+	
 }
