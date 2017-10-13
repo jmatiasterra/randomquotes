@@ -27,7 +27,6 @@ import com.assessment.randomquotes.services.QuoteService;
  *
  */
 @Controller
-@RequestMapping(value="/quotes")
 public class QuoteController {
 
 	@Autowired
@@ -35,20 +34,20 @@ public class QuoteController {
 	@Autowired
 	private AuthorService authorService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/quotes/", method = RequestMethod.GET)
 	@ResponseStatus(value=HttpStatus.OK)
 	@ResponseBody
 	public List<Quote> getAllQuotes() {
 		return service.findAllQuotes();
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Quote getQuote(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value = "/quotes/", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@ResponseBody
 	public Long createQuote(@RequestBody Quote quote) {
@@ -58,7 +57,7 @@ public class QuoteController {
 		return service.createQuote(quote);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public void updateQuote(@PathVariable("id") Long id, @RequestBody Quote quote) {
@@ -70,11 +69,17 @@ public class QuoteController {
 		}
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public void deleteQuote(@PathVariable("id") Long id) {
 		service.deleteQuoteById(id);
+	}
+	
+	@RequestMapping(value = "/authors/{id}/quotes/", method = RequestMethod.GET)
+	@ResponseBody
+	public Quote getQuoteByAuthor(@PathVariable("id") Long id) {
+		return service.findById(id);
 	}
 
 }
