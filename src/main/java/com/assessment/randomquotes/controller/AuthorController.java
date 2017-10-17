@@ -64,6 +64,7 @@ public class AuthorController {
 	public void updateAuthor(@PathVariable("id") Long id, @RequestBody Author author){
 		Author saveAuthor = service.findById(id);
 		if (saveAuthor != null){
+			author.setId(saveAuthor.getId());
 			service.updateAuthor(author);
 		}
 	}

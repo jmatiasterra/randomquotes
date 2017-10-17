@@ -52,7 +52,7 @@ public class AuthorDAOImpl extends AbstractDAO<Long, Author> implements AuthorDA
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Author> findAllAuthors() {
-		Criteria criteria = createEntityCriteria();
+		Criteria criteria = createEntityCriteria().setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return (List<Author>) criteria.list();
 	}
 

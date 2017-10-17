@@ -57,15 +57,13 @@ public class QuoteController {
 		return service.createQuote(quote);
 	}
 
-	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.PUT,consumes = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public void updateQuote(@PathVariable("id") Long id, @RequestBody Quote quote) {
 		Quote saveQuote = service.findById(id);
 		if (saveQuote != null) {
 			service.updateQuote(quote);
-		} else {
-			service.createQuote(quote);
 		}
 	}
 
