@@ -57,17 +57,9 @@ public class AuthorDTO {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
 	public AuthorDTO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public AuthorDTO getAuthor(Author author) {
-		AuthorDTO anAuthor = new AuthorDTO();
-		anAuthor.setId(author.getId());
-		anAuthor.setFirstName(author.getFirstName());
-		return anAuthor;
-				
 	}
 
 }

@@ -39,8 +39,9 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseStatus(value=HttpStatus.OK)
 	@ResponseBody
-	public Author getAuthor(@PathVariable("id") Long id){		
-		return service.findById(id);
+	public Author getAuthor(@PathVariable("id") Long id){	
+		return new Author();
+		//return service.findById(id);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)	
@@ -62,11 +63,11 @@ public class AuthorController {
 	@ResponseStatus(value=HttpStatus.OK)
 	@ResponseBody
 	public void updateAuthor(@PathVariable("id") Long id, @RequestBody Author author){
-		Author saveAuthor = service.findById(id);
+		/*Author saveAuthor = service.findById(id);
 		if (saveAuthor != null){
 			author.setId(saveAuthor.getId());
 			service.updateAuthor(author);
-		}
+		}*/
 	}
 	
 }

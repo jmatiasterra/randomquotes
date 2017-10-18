@@ -4,6 +4,7 @@
 package com.assessment.randomquotes.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class QuoteController {
 	@ResponseStatus(value=HttpStatus.OK)
 	@ResponseBody
 	public List<Quote> getAllQuotes() {
-		return service.findAllQuotes();
+		return new ArrayList<Quote>();
 	}
 
 	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.GET)
@@ -51,10 +52,11 @@ public class QuoteController {
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@ResponseBody
 	public Long createQuote(@RequestBody Quote quote) {
-		System.out.println(quote.toString());
+		/*System.out.println(quote.toString());
 		Author author = authorService.findById(quote.getAuthor().getId());
 		quote.setAuthor(author);
-		return service.createQuote(quote);
+		return service.createQuote(quote);*/
+		return new Long(-1);
 	}
 
 	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.PUT,consumes = {MediaType.APPLICATION_JSON_VALUE})
@@ -62,9 +64,9 @@ public class QuoteController {
 	@ResponseBody
 	public void updateQuote(@PathVariable("id") Long id, @RequestBody Quote quote) {
 		Quote saveQuote = service.findById(id);
-		if (saveQuote != null) {
+		/*if (saveQuote != null) {
 			service.updateQuote(quote);
-		}
+		}*/
 	}
 
 	@RequestMapping(value = "/quotes/{id}", method = RequestMethod.DELETE)

@@ -12,8 +12,8 @@ public class QuoteDTO {
 	private Long id;
 
 	private String text;
-
-	private AuthorDTO author;
+	
+	private String authorName;
 
 	public Long getId() {
 		return id;
@@ -31,19 +31,24 @@ public class QuoteDTO {
 		this.text = text;
 	}
 
-	public AuthorDTO getAuthor() {
-		return author;
+	public String getAuthorName() {
+		return authorName;
 	}
 
-	public void setAuthor(AuthorDTO author) {
-		this.author = author;
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
 	}
 
-	public QuoteDTO(Long id, String text, AuthorDTO author) {
+	public QuoteDTO(Long id, String text, String authorName) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.author = author;
+		this.authorName = authorName;
 	}
 
+	public QuoteDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
 }

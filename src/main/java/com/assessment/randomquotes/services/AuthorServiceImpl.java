@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.assessment.randomquotes.dao.AuthorDAO;
 import com.assessment.randomquotes.model.Author;
+import com.assessment.randomquotes.model.AuthorDTO;
+import com.assessment.randomquotes.utils.DTOFactory;
 
 /**
  * @author jm
@@ -22,6 +24,9 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Autowired
 	private AuthorDAO dao;
+	
+	@Autowired
+	private DTOFactory dtoFactory;
 
 	/*
 	 * (non-Javadoc)
@@ -29,8 +34,9 @@ public class AuthorServiceImpl implements AuthorService {
 	 * @see com.assessment.randomquotes.services.AuthorService#findById(long)
 	 */
 	@Override
-	public Author findById(long id) {
-		return dao.findById(id);
+	public AuthorDTO findById(long id) {		
+		Author savedAuthor = dao.findById(id);		
+		return dtoFactory.createAuthorDTO(savedAuthor);
 	}
 
 	/*
