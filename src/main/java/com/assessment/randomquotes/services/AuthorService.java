@@ -15,9 +15,9 @@ public interface AuthorService {
 
 	AuthorDTO findById(long id);
 
-	Long createAuthor(AuthorDTO author);
+	Long createAuthor(AuthorDTO authorDTO);
 
-	void updateAuthor(AuthorDTO author);
+	void updateAuthor(Long id,AuthorDTO authorDTO);
 
 	void deleteAuthorById(long id);
 

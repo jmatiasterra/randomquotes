@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.assessment.randomquotes.model.Author;
+import com.assessment.randomquotes.model.AuthorDTO;
 import com.assessment.randomquotes.services.AuthorService;
 
 /**
@@ -23,51 +24,50 @@ import com.assessment.randomquotes.services.AuthorService;
  *
  */
 @Controller
-@RequestMapping(value="/authors")
+@RequestMapping(value = "/authors")
 public class AuthorController {
-	
+
 	@Autowired
 	private AuthorService service;
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	@ResponseStatus(value=HttpStatus.OK)
+	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public List<Author> getAllAuthors() {
+	public List<AuthorDTO> getAllAuthors() {
 		return service.findAllAuthors();
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ResponseStatus(value=HttpStatus.OK)
+	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public Author getAuthor(@PathVariable("id") Long id){	
+	public Author getAuthor(@PathVariable("id") Long id) {
 		return new Author();
-		//return service.findById(id);
+		// return service.findById(id);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)	
-	@ResponseStatus(value=HttpStatus.CREATED)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.CREATED)
 	@ResponseBody
-	public Long createAuthor(@RequestBody Author author){		
+	public Long createAuthor(@RequestBody AuthorDTO author) {
 		return service.createAuthor(author);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(value=HttpStatus.OK)
+	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public void deleteAuthor(@PathVariable("id") Long id){
+	public void deleteAuthor(@PathVariable("id") Long id) {
 		service.deleteAuthorById(id);
 	}
-	
-	//this could be no content
+
+	// this could be no content
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@ResponseStatus(value=HttpStatus.OK)
+	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public void updateAuthor(@PathVariable("id") Long id, @RequestBody Author author){
-		/*Author saveAuthor = service.findById(id);
-		if (saveAuthor != null){
-			author.setId(saveAuthor.getId());
-			service.updateAuthor(author);
-		}*/
+	public void updateAuthor(@PathVariable("id") Long id, @RequestBody AuthorDTO author) {
+		AuthorDTO saveAuthor = service.findById(id);
+		if (saveAuthor != null) {
+			service.updateAuthor(id, author);
+		}
 	}
-	
+
 }

@@ -4,7 +4,11 @@
 package com.assessment.randomquotes.utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.springframework.stereotype.Component;
 
 import com.assessment.randomquotes.model.Author;
 import com.assessment.randomquotes.model.AuthorDTO;
@@ -15,9 +19,9 @@ import com.assessment.randomquotes.model.QuoteDTO;
  * @author mterraciano
  *
  */
+@Component
 public class DTOFactory {
 
-	@SuppressWarnings("unchecked")
 	/**
 	 * 
 	 * @param a
@@ -28,7 +32,7 @@ public class DTOFactory {
 		author.setId(a.getId());
 		author.setFirstName(a.getFirstName());
 		author.setLastName(a.getLastName());
-		author.setQuotes(createQuotesDTO((List<Quote>) a.getQuotes()));
+		author.setQuotes(createQuotesDTO(a.getQuotes()));
 		return author;
 	}
 	/**
@@ -50,12 +54,12 @@ public class DTOFactory {
 
 	/**
 	 * 
-	 * @param quotesP
+	 * @param set
 	 * @return
 	 */
-	public List<QuoteDTO> createQuotesDTO(List<Quote> quotesP) {
+	public List<QuoteDTO> createQuotesDTO(Set<Quote> set) {
 		List<QuoteDTO> quotes = new ArrayList<QuoteDTO>();
-		for (Quote q : quotesP) {
+		for (Quote q : set) {
 			quotes.add(createQuoteDTO(q));
 		}
 
@@ -74,6 +78,31 @@ public class DTOFactory {
 			authors.add(author);
 		}
 		return authors;
+	}
+	
+	public Author createAuthor(AuthorDTO a) {
+		Author author = new Author();		
+		author.setId(a.getId());
+		author.setFirstName(a.getFirstName());
+		author.setLastName(a.getLastName());
+		author.setQuotes(createQuotes(a.getQuotes()));
+		return author;		
+	}
+	
+	public Quote createQuote(QuoteDTO q) {
+		Quote quote = new Quote();
+		quote.setId(q.getId());
+		quote.setText(q.getText());
+		return quote;
+	}
+	
+	public Set<Quote> createQuotes(List<QuoteDTO> quotesDTO){
+		Set<Quote> quotes = new HashSet<Quote>();
+		for (QuoteDTO q : quotesDTO) {			
+			Quote quote = createQuote(q);
+			quotes.add(quote);			
+		}
+		return quotes;
 	}
 
 }

@@ -23,68 +23,39 @@ import com.assessment.randomquotes.utils.DTOFactory;
 public class AuthorServiceImpl implements AuthorService {
 
 	@Autowired
-	private AuthorDAO dao;
-	
+	private AuthorDAO authorDao;
+
 	@Autowired
 	private DTOFactory dtoFactory;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.assessment.randomquotes.services.AuthorService#findById(long)
-	 */
 	@Override
-	public AuthorDTO findById(long id) {		
-		Author savedAuthor = dao.findById(id);		
-		return dtoFactory.createAuthorDTO(savedAuthor);
+	public AuthorDTO findById(long id) {
+		Author author = authorDao.findById(id);
+		return dtoFactory.createAuthorDTO(author);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.assessment.randomquotes.services.AuthorService#saveAuthor(com.
-	 * assessment.randomquotes.model.Author)
-	 */
 	@Override
-	public Long createAuthor(Author author) {
-		dao.saveAuthor(author);
+	public Long createAuthor(AuthorDTO authorDTO) {
+		Author author = dtoFactory.createAuthor(authorDTO);
+		authorDao.saveAuthor(author);
 		return author.getId();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.assessment.randomquotes.services.AuthorService#updateAuthor(com.
-	 * assessment.randomquotes.model.Author)
-	 */
 	@Override
-	public void updateAuthor(Author author) {
-		Author entity = dao.findById(author.getId());
-		if (entity != null) {
-			entity.setFirstName(author.getFirstName());
-			entity.setLastName(author.getLastName());
-		}
+	public void updateAuthor(Long id, AuthorDTO authorDTO) {
+		Author author = dtoFactory.createAuthor(authorDTO);
+		authorDao.saveAuthor(author);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.assessment.randomquotes.services.AuthorService#deleteAuthorById(long)
-	 */
 	@Override
 	public void deleteAuthorById(long id) {
-		dao.deleteById(id);
+		authorDao.deleteById(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.assessment.randomquotes.services.AuthorService#findAllAuthors()
-	 */
 	@Override
-	public List<Author> findAllAuthors() {
-		return dao.findAllAuthors();
+	public List<AuthorDTO> findAllAuthors() {
+		List<AuthorDTO> authors = dtoFactory.createAuthorsDTO(authorDao.findAllAuthors());
+		return authors;
 	}
 
 }
