@@ -57,10 +57,11 @@ public class QuoteServiceImpl implements QuoteService {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<QuoteDTO> findAllQuotes() {
 		List<Quote> quotes = quoteDao.findAllQuotes();
-		return dtoFactory.createQuotesDTO(quotes);
+		return dtoFactory.createQuotesDTO((Set<Quote>) quotes);
 	}
 
 }
