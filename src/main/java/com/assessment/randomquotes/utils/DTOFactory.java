@@ -32,7 +32,7 @@ public class DTOFactory {
 		author.setId(a.getId());
 		author.setFirstName(a.getFirstName());
 		author.setLastName(a.getLastName());
-		author.setQuotes(createQuotesDTO(a.getQuotes()));
+		author.setQuotes(createQuotesDTO(new ArrayList<Quote>(a.getQuotes())));
 		return author;
 	}
 	/**
@@ -57,7 +57,7 @@ public class DTOFactory {
 	 * @param set
 	 * @return
 	 */
-	public List<QuoteDTO> createQuotesDTO(Set<Quote> set) {
+	public List<QuoteDTO> createQuotesDTO(List<Quote> set) {
 		List<QuoteDTO> quotes = new ArrayList<QuoteDTO>();
 		for (Quote q : set) {
 			quotes.add(createQuoteDTO(q));

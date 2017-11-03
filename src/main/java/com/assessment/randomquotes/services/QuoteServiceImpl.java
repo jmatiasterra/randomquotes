@@ -4,7 +4,6 @@
 package com.assessment.randomquotes.services;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +60,7 @@ public class QuoteServiceImpl implements QuoteService {
 	@Override
 	public List<QuoteDTO> findAllQuotes() {
 		List<Quote> quotes = quoteDao.findAllQuotes();
-		return dtoFactory.createQuotesDTO((Set<Quote>) quotes);
+		return dtoFactory.createQuotesDTO(quotes);
 	}
 
 }
