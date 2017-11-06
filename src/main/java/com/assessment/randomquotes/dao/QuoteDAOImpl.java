@@ -66,4 +66,10 @@ public class QuoteDAOImpl extends AbstractDAO<Long, Quote> implements QuoteDAO {
 		return (List<Quote>) criteria.list();
 	}
 
+	@Override
+	public Quote findByAuthorId(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

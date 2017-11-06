@@ -14,6 +14,7 @@ import com.assessment.randomquotes.model.Author;
 public interface AuthorDAO {
 	Author findById(long id);
 	void saveAuthor(Author author);
+	void updateAuthor(Author author);
 	void deleteById(long id);
 	List<Author> findAllAuthors();	
 

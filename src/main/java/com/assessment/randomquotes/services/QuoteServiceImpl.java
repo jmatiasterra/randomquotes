@@ -3,13 +3,17 @@
  */
 package com.assessment.randomquotes.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.assessment.randomquotes.dao.AuthorDAO;
 import com.assessment.randomquotes.dao.QuoteDAO;
+import com.assessment.randomquotes.model.Author;
+import com.assessment.randomquotes.model.AuthorDTO;
 import com.assessment.randomquotes.model.Quote;
 import com.assessment.randomquotes.model.QuoteDTO;
 import com.assessment.randomquotes.utils.DTOFactory;
@@ -26,6 +30,9 @@ public class QuoteServiceImpl implements QuoteService {
 	private QuoteDAO quoteDao;
 
 	@Autowired
+	private AuthorDAO authorDao;
+
+	@Autowired
 	private DTOFactory dtoFactory;
 
 	@Override
@@ -37,6 +44,8 @@ public class QuoteServiceImpl implements QuoteService {
 	@Override
 	public Long createQuote(QuoteDTO q) {
 		Quote quote = dtoFactory.createQuote(q);
+		Author savedAuthor = authorDao.findById(q.getAuthorId());
+		quote.setAuthor(savedAuthor);
 		quoteDao.saveQuote(quote);
 		return quote.getId();
 	}
@@ -56,11 +65,19 @@ public class QuoteServiceImpl implements QuoteService {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<QuoteDTO> findAllQuotes() {
 		List<Quote> quotes = quoteDao.findAllQuotes();
 		return dtoFactory.createQuotesDTO(quotes);
+	}
+
+	@Override
+	public List<QuoteDTO> findQuotesByAuthorId(Long id) {
+		AuthorDTO author = dtoFactory.createAuthorDTO(authorDao.findById(id));
+		if (author == null) {
+			return new ArrayList<QuoteDTO>();
+		}
+		return author.getQuotes();
 	}
 
 }

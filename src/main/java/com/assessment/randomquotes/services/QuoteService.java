@@ -22,5 +22,7 @@ public interface QuoteService {
 	void deleteQuoteById(long id);
 
 	List<QuoteDTO> findAllQuotes();
+	
+	List<QuoteDTO> findQuotesByAuthorId(Long id);
 
 }

@@ -35,6 +35,12 @@ public class AuthorDAOImpl extends AbstractDAO<Long, Author> implements AuthorDA
 		persist(author);
 
 	}
+	
+	@Override
+	public void updateAuthor(Author author) {
+		update(author);
+
+	}
 
 	/* (non-Javadoc)
 	 * @see com.assessment.randomquotes.dao.AuthorDAO#deleteById(int)

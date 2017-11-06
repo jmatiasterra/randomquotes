@@ -13,6 +13,8 @@ public class QuoteDTO {
 
 	private String text;
 	
+	private Long authorId;
+	
 	private String authorName;
 
 	public Long getId() {
@@ -39,10 +41,32 @@ public class QuoteDTO {
 		this.authorName = authorName;
 	}
 
+	/**
+	 * @return the authorId
+	 */
+	public Long getAuthorId() {
+		return authorId;
+	}
+
+	/**
+	 * @param authorId the authorId to set
+	 */
+	public void setAuthorId(Long authorId) {
+		this.authorId = authorId;
+	}
+
 	public QuoteDTO(Long id, String text, String authorName) {
 		super();
 		this.id = id;
 		this.text = text;
+		this.authorName = authorName;
+	}
+
+	public QuoteDTO(Long id, String text, Long authorId, String authorName) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.authorId = authorId;
 		this.authorName = authorName;
 	}
 

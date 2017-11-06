@@ -16,4 +16,5 @@ public interface QuoteDAO {
 	void saveQuote(Quote quote);
 	void deleteById(long id);
 	List<Quote> findAllQuotes();
+	Quote findByAuthorId(long id);
 }

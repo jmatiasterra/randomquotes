@@ -42,9 +42,9 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public void updateAuthor(Long id, AuthorDTO authorDTO) {
+	public void updateAuthor(AuthorDTO authorDTO) {
 		Author author = dtoFactory.createAuthor(authorDTO);
-		authorDao.saveAuthor(author);
+		authorDao.updateAuthor(author);
 	}
 
 	@Override
