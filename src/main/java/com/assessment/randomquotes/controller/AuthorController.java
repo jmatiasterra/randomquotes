@@ -5,9 +5,13 @@ package com.assessment.randomquotes.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.assessment.randomquotes.exception.ResourceNotFoundException;
 import com.assessment.randomquotes.model.AuthorDTO;
+import com.assessment.randomquotes.model.ErrorMessage;
 import com.assessment.randomquotes.model.QuoteDTO;
 import com.assessment.randomquotes.services.AuthorService;
 import com.assessment.randomquotes.services.QuoteService;
@@ -44,7 +50,11 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public AuthorDTO getAuthor(@PathVariable("id") Long id) {
+	public AuthorDTO getAuthor(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		AuthorDTO author = authorService.findById(id);
+		if (author == null) {
+			throw new ResourceNotFoundException();
+		}
 		return authorService.findById(id);
 	}
 
@@ -66,7 +76,8 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public void updateAuthor(@PathVariable("id") Long id, @RequestBody AuthorDTO author) {
+	public void updateAuthor(@PathVariable("id") Long id, @RequestBody AuthorDTO author)
+			throws ResourceNotFoundException {
 		AuthorDTO saveAuthor = authorService.findById(id);
 		if (saveAuthor != null) {
 			author.setId(id);
@@ -85,7 +96,8 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}/quotes/{quoteId}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public QuoteDTO getQuoteByAuthorById(@PathVariable("id") Long authorId, @PathVariable("quoteId") Long quoteId) {
+	public QuoteDTO getQuoteByAuthorById(@PathVariable("id") Long authorId, @PathVariable("quoteId") Long quoteId)
+			throws ResourceNotFoundException {
 		AuthorDTO author = authorService.findById(authorId);
 		if (author != null) {
 			return quoteService.findById(quoteId);
@@ -96,7 +108,8 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}/quotes/", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@ResponseBody
-	public Long createQuoteForAuthor(@PathVariable("id") Long id, @RequestBody QuoteDTO quote) {
+	public Long createQuoteForAuthor(@PathVariable("id") Long id, @RequestBody QuoteDTO quote)
+			throws ResourceNotFoundException {
 		AuthorDTO author = authorService.findById(id);
 		if (author != null) {
 			quote.setAuthorId(id);
@@ -110,7 +123,7 @@ public class AuthorController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public void updateQuoteForAuthor(@PathVariable("id") Long id, @PathVariable("quoteId") Long quoteId,
-			@RequestBody QuoteDTO quote) {
+			@RequestBody QuoteDTO quote) throws ResourceNotFoundException {
 		AuthorDTO saveAuthor = authorService.findById(id);
 		if (saveAuthor != null) {
 			QuoteDTO savedQuote = quoteService.findById(id);
@@ -123,12 +136,19 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}/quotes/{quoteId}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public void deleteQuoteForAuthor(@PathVariable("id") Long id, @PathVariable("quoteId") Long quoteId) {
+	public void deleteQuoteForAuthor(@PathVariable("id") Long id, @PathVariable("quoteId") Long quoteId)
+			throws ResourceNotFoundException {
 		AuthorDTO author = authorService.findById(id);
 		if (author != null) {
 			quoteService.deleteQuoteById(quoteId);
 		}
 
+	}
+
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<ErrorMessage> rulesForCustomerNotFound(HttpServletRequest req, Exception e) {
+		ErrorMessage error = new ErrorMessage(e.toString(), e.getLocalizedMessage());
+		return new ResponseEntity<ErrorMessage>(error, HttpStatus.NOT_FOUND);
 	}
 
 }

@@ -28,13 +28,17 @@ public class DTOFactory {
 	 * @return
 	 */
 	public AuthorDTO createAuthorDTO(Author a) {
-		AuthorDTO author = new AuthorDTO();
-		author.setId(a.getId());
-		author.setFirstName(a.getFirstName());
-		author.setLastName(a.getLastName());
-		if (a.getQuotes() != null) {
-			author.setQuotes(createQuotesDTO(new ArrayList<Quote>(a.getQuotes())));
+		AuthorDTO author = null;
+		if (a!= null) {
+			author = new AuthorDTO();
+			author.setId(a.getId());
+			author.setFirstName(a.getFirstName());
+			author.setLastName(a.getLastName());
+			if (a.getQuotes() != null) {
+				author.setQuotes(createQuotesDTO(new ArrayList<Quote>(a.getQuotes())));
+			}
 		}
+		
 		return author;
 	}
 
