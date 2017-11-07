@@ -11,7 +11,6 @@ public class ErrorMessage {
 
 	private String text;
 	private String errorCode;
-	private String stackTrace;
 
 	/**
 	 * @return the text
@@ -41,28 +40,6 @@ public class ErrorMessage {
 	 */
 	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
-	}
-
-	/**
-	 * @return the stackTrace
-	 */
-	public String getStackTrace() {
-		return stackTrace;
-	}
-
-	/**
-	 * @param stackTrace
-	 *            the stackTrace to set
-	 */
-	public void setStackTrace(String stackTrace) {
-		this.stackTrace = stackTrace;
-	}
-
-	public ErrorMessage(String text, String errorCode, String stackTrace) {
-		super();
-		this.text = text;
-		this.errorCode = errorCode;
-		this.stackTrace = stackTrace;
 	}
 
 	/**

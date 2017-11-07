@@ -50,12 +50,12 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public AuthorDTO getAuthor(@PathVariable("id") Long id) throws ResourceNotFoundException {
+	public AuthorDTO getAuthor(@PathVariable("id") Long id) {
 		AuthorDTO author = authorService.findById(id);
 		if (author == null) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException("Resource Not Found", "404");
 		}
-		return authorService.findById(id);
+		return author;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -76,12 +76,13 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public void updateAuthor(@PathVariable("id") Long id, @RequestBody AuthorDTO author)
-			throws ResourceNotFoundException {
+	public void updateAuthor(@PathVariable("id") Long id, @RequestBody AuthorDTO author) {
 		AuthorDTO saveAuthor = authorService.findById(id);
 		if (saveAuthor != null) {
 			author.setId(id);
 			authorService.updateAuthor(author);
+		} else {
+			throw new ResourceNotFoundException("Resource Not Found", "404");
 		}
 	}
 
@@ -96,8 +97,7 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}/quotes/{quoteId}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public QuoteDTO getQuoteByAuthorById(@PathVariable("id") Long authorId, @PathVariable("quoteId") Long quoteId)
-			throws ResourceNotFoundException {
+	public QuoteDTO getQuoteByAuthorById(@PathVariable("id") Long authorId, @PathVariable("quoteId") Long quoteId) {
 		AuthorDTO author = authorService.findById(authorId);
 		if (author != null) {
 			return quoteService.findById(quoteId);
@@ -108,8 +108,7 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}/quotes/", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@ResponseBody
-	public Long createQuoteForAuthor(@PathVariable("id") Long id, @RequestBody QuoteDTO quote)
-			throws ResourceNotFoundException {
+	public Long createQuoteForAuthor(@PathVariable("id") Long id, @RequestBody QuoteDTO quote) {
 		AuthorDTO author = authorService.findById(id);
 		if (author != null) {
 			quote.setAuthorId(id);
@@ -123,7 +122,7 @@ public class AuthorController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public void updateQuoteForAuthor(@PathVariable("id") Long id, @PathVariable("quoteId") Long quoteId,
-			@RequestBody QuoteDTO quote) throws ResourceNotFoundException {
+			@RequestBody QuoteDTO quote) {
 		AuthorDTO saveAuthor = authorService.findById(id);
 		if (saveAuthor != null) {
 			QuoteDTO savedQuote = quoteService.findById(id);
@@ -136,8 +135,7 @@ public class AuthorController {
 	@RequestMapping(value = "/{id}/quotes/{quoteId}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public void deleteQuoteForAuthor(@PathVariable("id") Long id, @PathVariable("quoteId") Long quoteId)
-			throws ResourceNotFoundException {
+	public void deleteQuoteForAuthor(@PathVariable("id") Long id, @PathVariable("quoteId") Long quoteId) {
 		AuthorDTO author = authorService.findById(id);
 		if (author != null) {
 			quoteService.deleteQuoteById(quoteId);
@@ -146,8 +144,8 @@ public class AuthorController {
 	}
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<ErrorMessage> rulesForCustomerNotFound(HttpServletRequest req, Exception e) {
-		ErrorMessage error = new ErrorMessage(e.toString(), e.getLocalizedMessage());
+	public ResponseEntity<ErrorMessage> resourceNotFound(HttpServletRequest req, ResourceNotFoundException e) {
+		ErrorMessage error = new ErrorMessage(e.getErrorMessage(), e.getErrorCode());
 		return new ResponseEntity<ErrorMessage>(error, HttpStatus.NOT_FOUND);
 	}
 
