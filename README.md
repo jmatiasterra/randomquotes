@@ -56,9 +56,22 @@ CREATE TABLE quote(
 ### Application basic Authentication
 
 Currently the application has a basic authentication using user and password.
-user: bill pass: abc123 role=ADMIN
-user: tom pass: abc123 role=USER
+user: admin pass: admin123 role=ADMIN
+user: user pass: user123 role=USER
 
 Now this information is being save in memory but the idea will be create a particular table in the future.
+
+POST http://host:port/randomquotes/oauth/token?grant_type=password&username=user123&password=user123
+
+basic authentication
+user valid_client
+password client_secret
+
+
+POST http://host:port/randomquotes/oauth/token?grant_type=refresh_token&refresh_token=
+
+http://localhost:8080/SpringSecurityOAuth2Example/user/?access_token=3525d0e4-d881-49e7-9f91-bcfd18259109
+
+
 
 
