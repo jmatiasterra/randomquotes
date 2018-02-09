@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "com.assessment.randomquotes.config" })
-@PropertySource(value = { "classpath:application.properties" })
+@PropertySource(value = { "classpath:configuration/application.properties" })
 public class HibernateConfiguration {
 	@Autowired
 	private Environment environment;

@@ -24,6 +24,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public ViewResolver viewResolver() {
+		//Siendo una api rest quizas no sea necesario pero lo deje por ahora
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
 		viewResolver.setPrefix("/WEB-INF/views/");
