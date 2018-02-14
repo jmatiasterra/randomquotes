@@ -1,4 +1,4 @@
-package com.assessment.randomquotes.security;
+package com.assessment.randomquotes.authentication.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

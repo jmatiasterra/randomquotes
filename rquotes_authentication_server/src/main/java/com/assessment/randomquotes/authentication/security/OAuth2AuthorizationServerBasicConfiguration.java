@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.assessment.randomquotes.security;
+package com.assessment.randomquotes.authentication.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +21,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  */
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+public class OAuth2AuthorizationServerBasicConfiguration extends AuthorizationServerConfigurerAdapter {
 
 	private static String REALM = "RANDOMQUOTES_OAUTH_REALM";
 
@@ -40,8 +40,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 		clients.inMemory().withClient("valid_client")
 				.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
-				.authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT").scopes("read", "write", "trust").secret("client_secret")
-				.accessTokenValiditySeconds(120).// Access token is only valid for 2 minutes.
+				.authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT").scopes("read", "write", "trust")
+				.secret("client_secret").accessTokenValiditySeconds(120).// Access token is only valid for 2 minutes.
 				refreshTokenValiditySeconds(600);// Refresh token is only valid for 10 minutes.
 	}
 

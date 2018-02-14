@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.gl.assessment.authentication</groupId>
+	<artifactId>rquotes_authentication_server</artifactId>
+	<packaging>war</packaging>
+	<name>rquotes_authentication Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	
+	<parent>
+	  <groupId>com.gl.assessment</groupId>
+	  <artifactId>randomquotes</artifactId>
+	  <version>1.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<dependencies>		
+
+	</dependencies>
+	<build>
+		<finalName>rquotes_authentication</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>${java-version}</source>
+						<target>${java-version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<warSourceDirectory>src/main/webapp</warSourceDirectory>
+						<warName>rquotes_authentication</warName>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
