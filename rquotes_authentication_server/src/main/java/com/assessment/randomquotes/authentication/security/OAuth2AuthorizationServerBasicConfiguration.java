@@ -53,6 +53,8 @@ public class OAuth2AuthorizationServerBasicConfiguration extends AuthorizationSe
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+		oauthServer.checkTokenAccess("isAuthenticated()");
+		oauthServer.tokenKeyAccess("permitAll()");
 		oauthServer.realm(REALM + "/client");
 	}
 

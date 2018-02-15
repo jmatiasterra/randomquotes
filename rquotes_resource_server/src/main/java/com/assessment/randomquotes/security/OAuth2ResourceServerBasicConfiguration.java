@@ -28,11 +28,11 @@ public class OAuth2ResourceServerBasicConfiguration extends ResourceServerConfig
 		resources.tokenServices(tokenService()).resourceId(RESOURCE_ID);// .stateless(false);
 	}
 
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
+	//@Override
+	/*public void configure(HttpSecurity http) throws Exception {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
 				.anyRequest().authenticated();
-	}
+	}*/
 
 	@Primary
 	@Bean
