@@ -41,7 +41,7 @@ public class AuthorController {
 	@Autowired
 	private QuoteService quoteService;
 	
-	@PreAuthorize("#oauth2.hasScope('read')")
+	@PreAuthorize("#oauth2.hasScope('read') and hasRole('ADMIN')")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody

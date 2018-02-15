@@ -23,8 +23,6 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServerBasicConfiguration extends AuthorizationServerConfigurerAdapter {
 
-	private static String REALM = "RANDOMQUOTES_OAUTH_REALM";
-
 	@Autowired
 	private TokenStore tokenStore;
 
@@ -53,11 +51,8 @@ public class OAuth2AuthorizationServerBasicConfiguration extends AuthorizationSe
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-		oauthServer.tokenKeyAccess("isAnonymous() || hasAuthority('ROLE_TRUSTED_CLIENT')").checkTokenAccess(
-				"hasAuthority('ROLE_TRUSTED_CLIENT')");
-		//oauthServer.checkTokenAccess("isAuthenticated()");
-		//oauthServer.tokenKeyAccess("permitAll()");
-		//oauthServer.realm(REALM + "/client");
+		oauthServer.tokenKeyAccess("isAnonymous() || hasAuthority('ROLE_TRUSTED_CLIENT')")
+				.checkTokenAccess("hasAuthority('ROLE_TRUSTED_CLIENT')");
 	}
 
 }
