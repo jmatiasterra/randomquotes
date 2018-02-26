@@ -39,8 +39,8 @@ public class OAuth2AuthorizationServerBasicConfiguration extends AuthorizationSe
 		clients.inMemory().withClient("valid_client")
 				.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
 				.authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT").scopes("read", "write", "trust")
-				.secret("client_secret").accessTokenValiditySeconds(120).// Access token is only valid for 2 minutes.
-				refreshTokenValiditySeconds(600);// Refresh token is only valid for 10 minutes.
+				.secret("client_secret").accessTokenValiditySeconds(120).
+				refreshTokenValiditySeconds(600);
 	}
 
 	@Override

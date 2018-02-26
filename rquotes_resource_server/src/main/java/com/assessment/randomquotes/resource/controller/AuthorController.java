@@ -157,7 +157,7 @@ public class AuthorController {
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<ErrorMessage> resourceNotFound(HttpServletRequest req, ResourceNotFoundException e) {
 		ErrorMessage error = new ErrorMessage(e.getErrorMessage(), e.getErrorCode());
-		return new ResponseEntity<ErrorMessage>(error, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 
 }

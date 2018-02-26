@@ -27,22 +27,14 @@ public class OAuth2ResourceServerBasicConfiguration extends ResourceServerConfig
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
-		resources.tokenServices(tokenService()).resourceId(RESOURCE_ID);//;.stateless(false);
+		resources.tokenServices(tokenService()).resourceId(RESOURCE_ID);
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-        .and()
-        .authorizeRequests().anyRequest().permitAll();
 
-		//http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-		//.and().authorizeRequests()
-		//		.anyRequest().authenticated()
-		/*.and()
-		.authorizeRequests()				
-			.antMatchers("/authors/*").access("#oauth2.hasScope('read')");*/
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
+				.anyRequest().permitAll();
 	}
 
 	@Primary

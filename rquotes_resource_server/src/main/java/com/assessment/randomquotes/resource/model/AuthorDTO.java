@@ -59,7 +59,7 @@ public class AuthorDTO {
 	}
 
 	public AuthorDTO() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 }

@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.assessment.randomquotes.resource.config" })
+@ComponentScan("com.assessment.randomquotes.resource.config")
 @PropertySource(value = { "classpath:application.properties" })
 public class HibernateConfiguration {
 	@Autowired
@@ -28,7 +28,7 @@ public class HibernateConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.assessment.randomquotes.resource.model" });
+		sessionFactory.setPackagesToScan("com.assessment.randomquotes.resource.model");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}
