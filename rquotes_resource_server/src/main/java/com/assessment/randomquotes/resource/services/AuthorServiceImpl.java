@@ -30,8 +30,7 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public AuthorDTO findById(long id) {
-		AuthorDTO author = dtoFactory.createAuthorDTO(authorDao.findById(id));
-		return author;
+		return dtoFactory.createAuthorDTO(authorDao.findById(id));
 	}
 
 	@Override
@@ -54,8 +53,7 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public List<AuthorDTO> findAllAuthors() {
-		List<AuthorDTO> authors = dtoFactory.createAuthorsDTO(authorDao.findAllAuthors());
-		return authors;
+		return dtoFactory.createAuthorsDTO(authorDao.findAllAuthors());
 	}
 
 }

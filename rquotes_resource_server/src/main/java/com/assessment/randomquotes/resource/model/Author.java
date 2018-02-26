@@ -37,7 +37,7 @@ public class Author {
 	 * @return the id
 	 */
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Author {
 	 * @return the lastName
 	 */
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class Author {
 	}
 
 	public Author() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	/**

@@ -65,11 +65,4 @@ public class QuoteDAOImpl extends AbstractDAO<Long, Quote> implements QuoteDAO {
 		Criteria criteria = createEntityCriteria();
 		return (List<Quote>) criteria.list();
 	}
-
-	@Override
-	public Quote findByAuthorId(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

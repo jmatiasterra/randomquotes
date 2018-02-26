@@ -97,8 +97,7 @@ public class AuthorController {
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
 	public List<QuoteDTO> getQuotesByAuthor(@PathVariable("id") Long id) {
-		List<QuoteDTO> quotes = quoteService.findQuotesByAuthorId(id);
-		return quotes;
+		return quoteService.findQuotesByAuthorId(id);
 	}
 	
 	@PreAuthorize("#oauth2.hasScope('read')")
