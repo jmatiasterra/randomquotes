@@ -37,7 +37,7 @@ public class Author {
 	 * @return the id
 	 */
 	public Long getId() {
-		return this.id;
+		return id;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Author {
 	 * @return the lastName
 	 */
 	public String getLastName() {
-		return this.lastName;
+		return lastName;
 	}
 
 	/**

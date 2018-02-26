@@ -71,7 +71,7 @@ public class QuoteDTO {
 	}
 
 	public QuoteDTO() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	
