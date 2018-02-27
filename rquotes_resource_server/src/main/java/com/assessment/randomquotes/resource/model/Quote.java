@@ -84,18 +84,16 @@ public class Quote {
 	 * 
 	 * @param id
 	 * @param text
-	 * @param author
 	 */
-	public Quote(Long id, String text, Author author) {
+	public Quote(Long id, String text) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.author = author;
 	}
 
 	@Override
 	public String toString() {
 		return "Quote [id=" + id + ", text=" + text + ", author=" + author + "]";
 	}
-	
+
 }

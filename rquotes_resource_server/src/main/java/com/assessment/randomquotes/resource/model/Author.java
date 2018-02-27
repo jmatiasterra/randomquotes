@@ -87,6 +87,19 @@ public class Author {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param firstName
+	 * @param lastName
+	 */
+	public Author(long id, String firstName, String lastName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
 	/**
 	 * @return the quotes
