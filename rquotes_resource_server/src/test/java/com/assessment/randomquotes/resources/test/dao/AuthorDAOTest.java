@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.assessment.randomquotes.resources.dao;
+package com.assessment.randomquotes.resources.test.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -13,23 +13,24 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.assessment.randomquotes.resource.dao.AuthorDAO;
 import com.assessment.randomquotes.resource.model.Author;
-import com.assessment.randomquotes.resources.config.TestConfig;
+import com.assessment.randomquotes.resources.config.HibernateTestConfig;
 
 /**
  * @author matias.terracciano
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { TestConfig.class })
-@WebAppConfiguration
+@ContextConfiguration(classes = { HibernateTestConfig.class }, loader = AnnotationConfigContextLoader.class)
 @Transactional
+@ActiveProfiles("test")
 public class AuthorDAOTest {
 
 	@Autowired
@@ -86,9 +87,6 @@ public class AuthorDAOTest {
 		assertNotNull(savedAuthor);
 
 		authorDAO.deleteById(authorId);
-
-		// revisar tiene un comportamiento extraño el delete aca en el test, pero
-		// funciona normalmente cuando esta deployado
 
 	}
 
