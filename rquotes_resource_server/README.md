@@ -43,12 +43,7 @@ password client_secret
 
 ### Resource Server 
 
-POST http://host:port/rquotes_server/oauth/token?grant_type=refresh_token&refresh_token=
+POST http://host:port/rquotes_server/oauth/token?grant_type=refresh_token&refresh_token=<token>
 
-http://host:port/rquotes_server/user/?access_token=3525d0e4-d881-49e7-9f91-bcfd18259109
-
-
-WIP
-
-
+http://host:port/rquotes_server/user/?access_token=<token>
 
