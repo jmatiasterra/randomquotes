@@ -5,7 +5,6 @@ package com.assessment.randomquotes.resources.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
@@ -13,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
  *
  */
 @Configuration
-@ComponentScan(basePackages = {"com.assessment.randomquotes.resource.dao"})
+@ComponentScan(basePackages = {"com.assessment.randomquotes.resource"})
 @ActiveProfiles("test")
 public class TestConfig {
 	
