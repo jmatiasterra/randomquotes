@@ -1,7 +1,7 @@
 # randomquotes
 
 This is a small rest api project to manage quotes for authors.
-The end of this project is to learn about rest api, spring framework, spring mvc, hibernate, spring security  
+The purpose of this project is to learn about rest api, spring framework, spring mvc, hibernate, spring security  
 
 Actually this project has a basic spring security configuration
 
